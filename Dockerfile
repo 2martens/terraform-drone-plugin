@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:1.6.2
+FROM hashicorp/tfci
 
 LABEL maintainer="docker@2martens.de" description="Terraform for Drone"
 RUN mkdir -p /opt/terraform/bin

@@ -11,6 +11,8 @@ This Drone plugin uses the Terraform CLI and makes it compatible with Drone.
 - name: Step name
   image: 2martens/terraform-drone-plugin
   settings:
+    api_token: <api_token>
+    cloud_organization: <cloud_organization>
     args: <args>
 ```
 
@@ -30,14 +32,13 @@ clone:
   skip_verify: true
 
 steps:
-  - name: login to Terraform cloud
-    pull: always
-    image: 2martens/terraform-drone-plugin:1.26.2
-    settings:
-      args: login
   - name: run plan
     pull: always
-    image: 2martens/terraform-drone-plugin:1.26.2
+    image: 2martens/terraform-drone-plugin
     settings:
+      api_token:
+        from_secret: api_token
+      cloud_organization:
+        from_secret: cloud_organization
       args: plan
 ```
