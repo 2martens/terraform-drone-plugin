@@ -13,6 +13,7 @@ This Drone plugin uses the Terraform CLI and makes it compatible with Drone.
   settings:
     api_token: <api_token>
     cloud_organization: <cloud_organization>
+    path: <path relative to Git repo>
     args: <args>
 ```
 
@@ -40,5 +41,6 @@ steps:
         from_secret: api_token
       cloud_organization:
         from_secret: cloud_organization
+      path: terraform
       args: plan
 ```
