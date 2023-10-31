@@ -9,6 +9,12 @@ then
 else
   auto_approve=""
 fi
-TF_TOKEN_app_terraform_io=$PLUGIN_API_TOKEN terraform apply -input=false"$auto_approve"
+if [ "$PLUGIN_SPECULATIVE" = "true" ]
+then
+  command="plan"
+else
+  command="apply"
+fi
+TF_TOKEN_app_terraform_io=$PLUGIN_API_TOKEN terraform "$command" -input=false"$auto_approve"
 TF_TOKEN_app_terraform_io=$PLUGIN_API_TOKEN terraform output -json > "$working_dir/terraform_output"
 cd "$working_dir" || exit 1
