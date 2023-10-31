@@ -1,4 +1,8 @@
-FROM hashicorp/tfci
+FROM amazonlinux:2023
+
+RUN yum install -y yum-utils shadow-utils
+RUN yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+RUN yum -y install terraform
 
 LABEL maintainer="docker@2martens.de" description="Terraform for Drone"
 COPY tool.sh /usr/local/bin
