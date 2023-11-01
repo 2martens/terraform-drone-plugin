@@ -3,7 +3,6 @@
 working_dir=$(pwd)
 echo "change to $working_dir/$PLUGIN_PATH"
 cd "$working_dir/$PLUGIN_PATH" || exit 1
-terraform init
 if [ "$PLUGIN_AUTO_APPROVE" = "true" ]
 then
   auto_approve=" -auto-approve"
