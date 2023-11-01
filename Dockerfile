@@ -1,8 +1,9 @@
-FROM amazonlinux:2023
+FROM alpine
+ARG TARGETARCH
 
-RUN yum install -y yum-utils shadow-utils
-RUN yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-RUN yum -y install terraform
+RUN wget "https://releases.hashicorp.com/terraform/1.6.2/terraform_1.6.2_linux_$TARGETARCH.zip" -O "/tmp/terraform_1.6.2_linux_$TARGETARCH.zip"  \
+    && unzip "/tmp/terraform_1.6.2_linux_$TARGETARCH.zip" -d /usr/local/bin  \
+    && chmod +x /usr/local/bin/terraform
 
 LABEL maintainer="docker@2martens.de" description="Terraform for Drone"
 COPY tool.sh /usr/local/bin
